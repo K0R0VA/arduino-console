@@ -31,7 +31,7 @@ macro_rules! print {
     ($($t:tt)*) => {
         avr_device::interrupt::free(
             |cs| {
-                if let Some(console) = $crate::CONSOLE.borrow(cs).borrow_mut().as_mut() {
+                if let Some(console) = arduino_console::CONSOLE.borrow(cs).borrow_mut().as_mut() {
                     let _ = ufmt::uwrite!(console, $($t)*);
                 }
             },
@@ -44,7 +44,7 @@ macro_rules! println {
     ($($t:tt)*) => {
         avr_device::interrupt::free(
             |cs| {
-                if let Some(console) = $crate::CONSOLE.borrow(cs).borrow_mut().as_mut() {
+                if let Some(console) = arduino_console::CONSOLE.borrow(cs).borrow_mut().as_mut() {
                     let _ = ufmt::uwriteln!(console, $($t)*);
                 }
             },

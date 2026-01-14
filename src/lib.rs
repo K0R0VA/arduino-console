@@ -18,7 +18,7 @@ pub fn init_console(p: Periph<RegisterBlock, 192>,
     );
     interrupt::free(|cs| {
         *CONSOLE.borrow(cs).borrow_mut() = Some(console);
-})
+    })
 }
 
 
